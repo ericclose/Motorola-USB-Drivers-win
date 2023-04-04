@@ -1,0 +1,159 @@
+;-------------------------------------------------------------------------------
+;
+; Motorola Android (Mot) WINUSB Bulk device (motoandroid2.inf)
+;
+; Copyright (c) Motorola Mobility Inc
+;
+;-------------------------------------------------------------------------------
+[Version]
+Signature      = "$WINDOWS NT$"
+Class          = AndroidUsbDeviceClass
+ClassGuid      = {146BF252-9F25-4209-A6DD-C45A1180ABC4}
+Provider       = %Motorola%
+DriverVer      = 07/07/2013, 2.0.2.0
+CatalogFile    = motoandroid2.cat
+
+; ================= Class section =====================
+
+[ClassInstall32]
+Addreg = AndroidWinUsbClassReg
+
+[AndroidWinUsbClassReg]
+HKR,,,0,%ClassName%
+HKR,,Icon,,-5
+
+; ================= Device section =====================
+
+[Manufacturer]
+%Motorola% = Motorola, NTx86, NTamd64
+
+; no Win2K anymore
+[Motorola.NTx86]
+
+; Sh
+%MotSingleInterface%    = Motwinusb_install, USB\VID_22B8&PID_2EB4&MI_01
+%MotSingleInterface%    = Motwinusb_install, USB\VID_22B8&PID_2EB6&MI_01
+
+; Qa
+%MotSingleInterface%    = Motwinusb_install, USB\VID_22B8&PID_2EA5&MI_01
+%MotSingleInterface%    = Motwinusb_install, USB\VID_22B8&PID_2EA7&MI_01
+
+; q
+%MotSingleInterface%    = Motwinusb_install, USB\VID_22B8&PID_2E77&MI_01
+%MotSingleInterface%    = Motwinusb_install, USB\VID_22B8&PID_2E87&MI_01
+
+; q ~x
+%MotSingleInterface%    = Motwinusb_install, USB\VID_22B8&PID_2E80
+%MotSingleInterface%    = Motwinusb_install, USB\VID_22B8&PID_2E81
+%MotSingleInterface%    = Motwinusb_install, USB\VID_22B8&PID_2E76&MI_01
+%MotSingleInterface%    = Motwinusb_install, USB\VID_22B8&PID_2E84&MI_01
+
+; q x,o,om
+%MotCompositeInterface% = Motwinusb_install, USB\VID_22B8&PID_2E63&MI_01
+%MotCompositeInterface% = Motwinusb_install, USB\VID_22B8&PID_2E65&MI_01
+%MotCompositeInterface% = Motwinusb_install, USB\VID_22B8&PID_2E68&MI_01
+%MotCompositeInterface% = Motwinusb_install, USB\VID_22B8&PID_2E6A&MI_01
+%MotCompositeInterface% = Motwinusb_install, USB\VID_22B8&PID_2E6D&MI_01
+%MotCompositeInterface% = Motwinusb_install, USB\VID_22B8&PID_2E6F&MI_01
+%MotCompositeInterface% = Motwinusb_install, USB\VID_22B8&PID_2E73&MI_05
+%MotCompositeInterface% = Motwinusb_install, USB\VID_22B8&PID_2E75&MI_07
+
+; test
+%MotCompositeInterface% = Motwinusb_install, USB\VID_22B8&PID_41EE&MI_03
+
+[Motorola.NTamd64]
+
+; Sh
+%MotSingleInterface%    = Motwinusb_install, USB\VID_22B8&PID_2EB4&MI_01
+%MotSingleInterface%    = Motwinusb_install, USB\VID_22B8&PID_2EB6&MI_01
+
+; Qa
+%MotSingleInterface%    = Motwinusb_install, USB\VID_22B8&PID_2EA5&MI_01
+%MotSingleInterface%    = Motwinusb_install, USB\VID_22B8&PID_2EA7&MI_01
+
+; q
+%MotSingleInterface%    = Motwinusb_install, USB\VID_22B8&PID_2E77&MI_01
+%MotSingleInterface%    = Motwinusb_install, USB\VID_22B8&PID_2E87&MI_01
+
+; q ~x
+%MotSingleInterface%    = Motwinusb_install, USB\VID_22B8&PID_2E80
+%MotSingleInterface%    = Motwinusb_install, USB\VID_22B8&PID_2E81
+%MotSingleInterface%    = Motwinusb_install, USB\VID_22B8&PID_2E76&MI_01
+%MotSingleInterface%    = Motwinusb_install, USB\VID_22B8&PID_2E84&MI_01
+
+; q x,o,om
+%MotCompositeInterface% = Motwinusb_install, USB\VID_22B8&PID_2E63&MI_01
+%MotCompositeInterface% = Motwinusb_install, USB\VID_22B8&PID_2E65&MI_01
+%MotCompositeInterface% = Motwinusb_install, USB\VID_22B8&PID_2E68&MI_01
+%MotCompositeInterface% = Motwinusb_install, USB\VID_22B8&PID_2E6A&MI_01
+%MotCompositeInterface% = Motwinusb_install, USB\VID_22B8&PID_2E6D&MI_01
+%MotCompositeInterface% = Motwinusb_install, USB\VID_22B8&PID_2E6F&MI_01
+%MotCompositeInterface% = Motwinusb_install, USB\VID_22B8&PID_2E73&MI_05
+%MotCompositeInterface% = Motwinusb_install, USB\VID_22B8&PID_2E75&MI_07
+
+; test
+%MotCompositeInterface% = Motwinusb_install, USB\VID_22B8&PID_41EE&MI_03
+
+
+[Motwinusb_install]
+Include = winusb.inf
+Needs   = WINUSB.NT
+
+[Motwinusb_install.Services]
+Include     = winusb.inf
+AddService  = WinUSB,0x00000002,WinUSB_ServiceInstall
+
+[WinUSB_ServiceInstall]
+DisplayName     = %WinUSB_SvcDesc%
+ServiceType     = 1
+StartType       = 3
+ErrorControl    = 1
+ServiceBinary   = %12%\WinUSB.sys
+
+[Motwinusb_install.Wdf]
+KmdfService = WINUSB, WinUSB_Install
+
+[WinUSB_Install]
+KmdfLibraryVersion  = 1.9
+
+[Motwinusb_install.HW]
+AddReg  = Dev_AddReg
+
+[Dev_AddReg]
+HKR,,DeviceInterfaceGUIDs,0x10000,"{F72FE0D4-CBCB-407d-8814-9ED673D0DD6B}"
+
+[Motwinusb_install.CoInstallers]
+AddReg    = CoInstallers_AddReg
+CopyFiles = CoInstallers_CopyFiles
+
+[CoInstallers_AddReg]
+HKR,,CoInstallers32,0x00010000,"WdfCoInstaller01009.dll,WdfCoInstaller","WinUSBCoInstaller2.dll"
+
+[CoInstallers_CopyFiles]
+WinUSBCoInstaller2.dll
+WdfCoInstaller01009.dll
+
+[DestinationDirs]
+CoInstallers_CopyFiles=11
+
+[SourceDisksNames]
+1=%Disk_Description%,,,
+
+[SourceDisksFiles]
+WinUSBCoInstaller2.dll  = 1
+WdfCoInstaller01009.dll = 1
+
+
+;---------------------------------------------------------------;
+
+[Strings]
+Motorola                = "Motorola"
+Disk_Description        = "Android WinUsb installation disk"
+ClassName               = "Android Device"
+USB\VID_18D1&PID_DDDD.DeviceDescTest="Android Sooner ADB Testing Interface"
+USB\VID_18D1&PID_D00D.DeviceDescRelease="Android Sooner Single ADB Interface"
+USB\VID_18D1&PID_DEED&MI_01.DeviceDescRelease="Android Sooner Composite ADB Interface"
+USB\VID_18D1&PID_DEED&MI_02.DeviceDescRelease="Android Sooner Kernel Debug Interface"
+MotSingleInterface		= "Motorola ADB Interface"
+MotCompositeInterface	= "Mot Composite ADB Interface"
+WinUSB_SvcDesc          = "Motorola Android USB Driver"
