@@ -8,7 +8,7 @@
 
 ## Explanation
 
-Because the “Motorola USB driver v6.4.0” from [Motorola Support](https://en-gb.support.motorola.com/app/usb-drivers) can't install properly in Windows 11 (It will end with an error), that's why I made this driver installation batch file.
+Because the “Motorola USB driver v6.4.0” from [Motorola Support](https://en-gb.support.motorola.com/app/usb-drivers) can't install properly in Windows 11 (It will end up with an error), that's why I made this driver installation batch file.
 
 The USB drivers are extracted from the following sources:
 
